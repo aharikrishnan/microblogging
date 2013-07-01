@@ -1,4 +1,13 @@
 Microblogging::Application.routes.draw do
+  
+  resources :sessions, only: [:new, :create, :destroy]
+
+  match '/signin', to: 'sessions#new'
+  match '/signout', to: 'sessions#destroy', via: :delete
+  resources :microposts
+
+
+  resources :users
 
   #get "users/new"
   match '/signup', to: 'users#new'
@@ -17,11 +26,6 @@ Microblogging::Application.routes.draw do
   #get "static/about"
   match '/about', to: 'static#about'
 
-
-  resources :microposts
-
-
-  resources :users
   
 
 
